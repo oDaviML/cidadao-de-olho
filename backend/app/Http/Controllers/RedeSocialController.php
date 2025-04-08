@@ -4,12 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\RedeSocial;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 
 class RedeSocialController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         //
