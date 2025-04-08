@@ -16,9 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('deputado_id');
             $table->integer('ano');
             $table->integer('mes');
-            $table->decimal('valor_despesa',10,2);
-            $table->decimal('valor_reembolsado',10,2);
-            $table->string('emitente');
+            $table->decimal('valor',10,2);
             $table->string('descricao');
             $table->timestamps();
 

@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('rede_socials', function (Blueprint $table) {
+        Schema::create('redes_sociais', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('deputado_id');
             $table->string('nome');

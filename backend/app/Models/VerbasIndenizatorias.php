@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class VerbasIndenizatorias extends Model
 {
     protected $table = "verbas_indenizatorias";
-    protected $fillable = ["deputado_id", "ano", "mes", "valor_despesa", "valor_reembolsado", "emitente", "descricao"];
+    protected $fillable = ["deputado_id", "ano", "mes", "valor", "descricao"];
 
     public function deputado()
     {
