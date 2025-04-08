@@ -8,9 +8,9 @@ use Illuminate\Routing\Controller;
 
 class DeputadoController extends Controller
 {
-   public function index()
-   {
-       $deputados = Deputado::all();
-       return response()->json($deputados);
-   }
+    public function index()
+    {
+        $deputados = Deputado::all();
+        return response()->json($deputados);
+    }
 }
