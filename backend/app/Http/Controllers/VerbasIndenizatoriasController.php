@@ -4,62 +4,44 @@ namespace App\Http\Controllers;
 
 use App\Models\VerbasIndenizatorias;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
 
 class VerbasIndenizatoriasController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function topDeputadosVerbas()
     {
-        //
-    }
+        $topDeputados = VerbasIndenizatorias::selectRaw('deputado_id, SUM(valor) as total')
+            ->with('deputado:id,nome')
+            ->where('ano', 2023)
+            ->groupBy('deputado_id')
+            ->orderByDesc('total')
+            ->limit(5)
+            ->get();
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return response()->json($topDeputados);
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function topDeputadosVerbasMes($mes)
     {
-        //
-    }
+        if (!is_numeric($mes) || $mes < 1 || $mes > 12) {
+            return response()->json([
+                'error' => 'Mês inválido. O valor deve estar entre 1 e 12.'
+            ], 400);
+        }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(VerbasIndenizatorias $verbasIndenizatorias)
-    {
-        //
-    }
+        $top5 = VerbasIndenizatorias::select(
+            'deputados.nome',
+            'verbas_indenizatorias.mes',
+            DB::raw('SUM(verbas_indenizatorias.valor) as total')
+        )
+            ->join('deputados', 'verbas_indenizatorias.deputado_id', '=', 'deputados.id')
+            ->where('verbas_indenizatorias.ano', 2023)
+            ->where('verbas_indenizatorias.mes', $mes)
+            ->groupBy('deputados.nome', 'verbas_indenizatorias.mes')
+            ->orderByDesc('total')
+            ->limit(5)
+            ->get();
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(VerbasIndenizatorias $verbasIndenizatorias)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, VerbasIndenizatorias $verbasIndenizatorias)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(VerbasIndenizatorias $verbasIndenizatorias)
-    {
-        //
+        return response()->json($top5);
     }
 }

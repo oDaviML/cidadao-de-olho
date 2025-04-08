@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\RedeSocialController;
+use App\Http\Controllers\VerbasIndenizatoriasController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,7 +17,9 @@ Route::get("/", function (Request $request) {
     ]);
 })->name("api.welcome");
 
-Route::get("rede-social/top5", [RedeSocialController::class,"getTop5"])->name("rede-social.top5");
+Route::get("rede-social/ranking/top5", [RedeSocialController::class, "getTop5"])->name("rede-social.ranking.top5");
 
+Route::get("verbas/ranking/top5", [VerbasIndenizatoriasController::class, "topDeputadosVerbas"])->name("verbas.ranking.top5");
+Route::get("verbas/ranking/top5/{mes}", [VerbasIndenizatoriasController::class, "topDeputadosVerbasMes"])->name("verbas.ranking.top5.mes");
 
-Route::get("deputados", [\App\Http\Controllers\DeputadoController::class,"index"])->name("deputados.index");
+Route::get("deputados/", [\App\Http\Controllers\DeputadoController::class, "index"])->name("deputados.lista");
