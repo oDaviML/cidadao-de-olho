@@ -11,7 +11,7 @@ class Deputado extends Model
         'id',
         'nome',
         'partido',
-        'tagLocalizacao',
+        'tag_localizacao',
     ];
 
     public $incrementing = false;

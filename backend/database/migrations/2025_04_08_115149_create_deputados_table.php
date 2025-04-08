@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nome');
             $table->string('partido');
-            $table->string('tagLocalizacao')->nullable();
+            $table->string('tag_localizacao')->nullable();
             $table->timestamps();
         });
     }
