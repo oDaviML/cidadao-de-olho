@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\RedeSocialController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,3 +15,8 @@ Route::get("/", function (Request $request) {
         "status" => 200,
     ]);
 })->name("api.welcome");
+
+Route::get("rede-social/top5", [RedeSocialController::class,"getTop5"])->name("rede-social.top5");
+
+
+Route::get("deputados", [\App\Http\Controllers\DeputadoController::class,"index"])->name("deputados.index");
