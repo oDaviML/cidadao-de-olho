@@ -1,16 +1,9 @@
 <script setup lang="ts">
 import { onMounted } from "vue"
-import { storeToRefs } from "pinia"
 import { useDeputadoStore } from "../stores/deputados"
 import LoadingSpinner from "../components/LoadingSpinner.vue"
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "../components/ui/table"
+import DataTable from "primevue/datatable"
+import Column from "primevue/column"
 
 const deputadoStore = useDeputadoStore()
 
@@ -32,20 +25,16 @@ onMounted(() => {
         <p>Erro ao carregar os deputados: {{ deputadoStore.error }}</p>
       </div>
       <div class="p-6" v-else>
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Nome</TableHead>
-              <TableHead>Partido</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            <TableRow v-for="deputado in deputadoStore.deputados" :key="deputado.id">
-              <TableCell>{{ deputado.nome }}</TableCell>
-              <TableCell>{{ deputado.partido }}</TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
+        <DataTable
+          :value="deputadoStore.deputados"
+          paginator
+          :rows="5"
+          :rowsPerPageOptions="[5, 10, 20, 50]"
+          tableStyle="min-width: 50rem"
+        >
+          <Column field="nome" header="Nome"></Column>
+          <Column field="partido" header="Partido"></Column>
+        </DataTable>
       </div>
     </div>
   </main>

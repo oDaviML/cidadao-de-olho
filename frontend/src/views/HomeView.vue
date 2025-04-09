@@ -1,12 +1,5 @@
 <script setup lang="ts">
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
+import Card from "primevue/card"
 </script>
 
 <template>
@@ -15,45 +8,33 @@ import {
     <div class="flex flex-col md:flex-row p-4 gap-4">
       <RouterLink to="/deputados" class="md:w-1/4">
         <Card class="hover:scale-105 transition-transform duration-300 shadow-lg h-full">
-          <CardHeader>
-            <CardTitle>Deputados</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p>Listagem de todos os deputados</p>
-          </CardContent>
+          <template #title>Deputados</template>
+          <template #content>Listagem de todos os deputados</template>
         </Card>
       </RouterLink>
 
       <RouterLink to="/deputados" class="md:w-1/4">
         <Card class="hover:scale-105 transition-transform duration-300 shadow-lg h-full">
-          <CardHeader>
-            <CardTitle>Verbas Indenizatórias</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p>Listar os deputados com maiores com verbas indenizatórias por mês</p>
-          </CardContent>
+          <template #title>Verbas Indenizatórias</template>
+          <template #content
+            >Listar os deputados com maiores com verbas indenizatórias por mês</template
+          >
         </Card>
       </RouterLink>
 
       <RouterLink to="/deputados" class="md:w-1/4">
         <Card class="hover:scale-105 transition-transform duration-300 shadow-lg h-full">
-          <CardHeader>
-            <CardTitle>Verbas Indenizatórias - ANO</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p>Listar os deputados com maiores com verbas indenizatórias no ano</p>
-          </CardContent>
+          <template #title> Verbas Indenizatórias - ANO </template>
+          <template #content
+            >Listar os deputados com maiores com verbas indenizatórias no ano</template
+          >
         </Card>
       </RouterLink>
 
-      <RouterLink to="/deputados" class="md:w-1/4">
+      <RouterLink to="/redes-sociais" class="md:w-1/4">
         <Card class="hover:scale-105 transition-transform duration-300 shadow-lg h-full">
-          <CardHeader>
-            <CardTitle>TOP 5 Redes sociais</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p>Exibir as 5 redes sociais mais utilizadas pelos deputados</p>
-          </CardContent>
+          <template #title>TOP 5 Redes sociais</template>
+          <template #content>Exibir as 5 redes sociais mais utilizadas pelos deputados</template>
         </Card>
       </RouterLink>
     </div>
