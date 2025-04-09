@@ -12,9 +12,10 @@ class RedeSocialController extends Controller
     public function getTop5()
     {
         $top5 = RedeSocial::select('nome', DB::raw('COUNT(deputado_id) as total'))
-        ->groupBy('nome')
-        ->orderBy('total', 'desc')
-        ->get();
+            ->groupBy('nome')
+            ->orderBy('total', 'desc')
+            ->limit(5)
+            ->get();
 
         return response()->json($top5);
     }
