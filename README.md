@@ -70,6 +70,6 @@ docker-compose up -d --build
 #### **5. Acessar a Aplicação**
 Após a sincronização, você poderá acessar a aplicação nos seguintes endereços:
 - **Backend (Laravel):** `http://localhost:8000`
-- **Frontend (Vue.js):** `http://localhost`
+- **Frontend (Vue.js):** `http://localhost:3000`
 
 ---
