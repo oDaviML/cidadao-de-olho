@@ -23,7 +23,7 @@ class VerbasIndenizatoriasController extends Controller
             DB::raw('SUM(verbas_indenizatorias.valor) as total')
         )
             ->join('deputados', 'verbas_indenizatorias.deputado_id', '=', 'deputados.id')
-            ->where('verbas_indenizatorias.ano', 2023)
+            ->where('verbas_indenizatorias.ano', 2019)
             ->where('verbas_indenizatorias.mes', $mes)
             ->groupBy('deputados.nome', 'verbas_indenizatorias.mes')
             ->orderByDesc('total')

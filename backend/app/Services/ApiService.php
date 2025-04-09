@@ -5,7 +5,10 @@ namespace App\Services;
 use App\Models\Deputado;
 use App\Models\RedeSocial;
 use App\Models\VerbasIndenizatorias;
+use GuzzleHttp\Client;
+use GuzzleHttp\Promise\Utils;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class ApiService
 {
@@ -65,35 +68,39 @@ class ApiService
 
     public function getVerbas()
     {
+        $client = new Client();
+        $promises = [];
         $deputados = Deputado::all();
         $ano = 2019;
 
         foreach ($deputados as $deputado) {
-
             // Percorre os meses de janeiro a dezembro
             for ($i = 1; $i <= 12; $i++) {
-                $url = 'https://dadosabertos.almg.gov.br/api/v2/prestacao_contas/verbas_indenizatorias/deputados/' . $deputado->id . '/'. $ano . '/' . $i . '?formato=json';
+                $url = 'https://dadosabertos.almg.gov.br/api/v2/prestacao_contas/verbas_indenizatorias/deputados/' . $deputado->id . '/' . $ano . '/' . $i . '?formato=json';
 
-                $response = Http::get($url);
+                $promises[] = $client->getAsync($url)->then(
+                    function ($response) use ($deputado, $i, $ano) {
 
-                if ($response->failed()) {
-                    throw new \Exception("Erro ao acessar a API da ALMG: " . $response->status());
-                }
+                        $dados = json_decode($response->getBody(), true);
 
-                $dados = $response->json();
-
-                foreach ($dados['list'] ?? [] as $verbaData) {
-                    VerbasIndenizatorias::updateOrCreate(
-                        [
-                            'deputado_id' => $deputado->id,
-                            'ano' => $ano,
-                            'mes' => $i,
-                            'valor' => $verbaData['valor'],
-                            'descricao' => $verbaData['descTipoDespesa'],
-                        ]
-                    );
-                }
+                        foreach ($dados['list'] ?? [] as $verbaData) {
+                            VerbasIndenizatorias::updateOrCreate(
+                                [
+                                    'deputado_id' => $deputado->id,
+                                    'ano' => $ano,
+                                    'mes' => $i,
+                                    'valor' => $verbaData['valor'],
+                                    'descricao' => $verbaData['descTipoDespesa'],
+                                ]
+                            );
+                        }
+                    },
+                    function ($exception) {
+                        Log::error("Erro ao acessar a API da ALMG: " . $exception->getMessage());
+                    }
+                );
             }
         }
+        Utils::settle($promises)->wait();
     }
 }
