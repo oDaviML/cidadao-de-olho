@@ -4,7 +4,7 @@
   <div class="min-h-screen bg-background">
     <nav class="bg-gray-800 text-white p-4 shadow-xl rounded-b-sm">
       <div class="container mx-auto flex justify-between items-center">
-        <RouterLink to="/" class="text-lg font-bold hover:text-gray-200">Home Page</RouterLink>
+        <RouterLink to="/" class="text-lg font-bold hover:text-gray-200">Início</RouterLink>
       </div>
     </nav>
     <RouterView />
