@@ -20,7 +20,7 @@ services:
       - "8000:8000"
     networks:
       - app-network
-    command: bash -c " php artisan migrate && php artisan app:sync-deputados-em-exercicio && php artisan app:sync-redes-sociais && php artisan app:sync-verbas-indenizatorias && php artisan serve --host=0.0.0.0 --port=8000"
+    command: bash -c "php artisan migrate && php artisan app:sync-deputados-em-exercicio && php artisan app:sync-redes-sociais && php artisan app:sync-verbas-indenizatorias && php artisan serve --host=0.0.0.0 --port=8000"
 
   frontend:
     build:
@@ -30,12 +30,9 @@ services:
     container_name: vue
     restart: unless-stopped
     ports:
-      - "5173:5173"
+      - "80:80"
     volumes:
       - ./frontend:/app
-      - node_modules_frontend:/app/node_modules
-    working_dir: /app
-    command: npm run dev
     networks:
       - app-network
     depends_on:
@@ -62,4 +59,3 @@ networks:
 
 volumes:
   pgdata:
-  node_modules_frontend:
