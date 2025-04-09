@@ -1,21 +1,18 @@
 <script setup lang="ts">
 import { onMounted } from "vue"
 import { storeToRefs } from "pinia"
-import { useDeputadoStore } from "@/stores/deputados"
+import { useDeputadoStore } from "../stores/deputados"
 import LoadingSpinner from "../components/LoadingSpinner.vue"
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table"
+} from "../components/ui/table"
 
 const deputadoStore = useDeputadoStore()
-
-const { deputados, loading, error } = storeToRefs(deputadoStore)
 
 onMounted(() => {
   deputadoStore.fetchDeputados()
@@ -28,8 +25,11 @@ onMounted(() => {
       Lista dos deputados da ALMG
     </h1>
     <div>
-      <div v-if="loading">
+      <div v-if="deputadoStore.isLoading">
         <LoadingSpinner />
+      </div>
+      <div v-else-if="deputadoStore.error" class="text-red-500 text-center">
+        <p>Erro ao carregar os deputados: {{ deputadoStore.error }}</p>
       </div>
       <div class="p-6" v-else>
         <Table>
@@ -39,8 +39,8 @@ onMounted(() => {
               <TableHead>Partido</TableHead>
             </TableRow>
           </TableHeader>
-          <TableBody v-for="deputado in deputados">
-            <TableRow>
+          <TableBody>
+            <TableRow v-for="deputado in deputadoStore.deputados" :key="deputado.id">
               <TableCell>{{ deputado.nome }}</TableCell>
               <TableCell>{{ deputado.partido }}</TableCell>
             </TableRow>
