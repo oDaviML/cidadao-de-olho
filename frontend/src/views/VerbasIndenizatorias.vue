@@ -72,10 +72,10 @@ const meses = [
       <LoadingSpinner />
     </div>
     <div v-else-if="verbasStore.error" class="text-red-500 text-center">
-      <p>Erro ao carregar as redes sociais: {{ verbasStore.error }}</p>
+      <p>Erro ao carregar as verbas indenizatorias: {{ verbasStore.error }}</p>
     </div>
     <div v-else-if="verbasStore.verbas.length === 0" class="text-center text-gray-600">
-      <p>Nenhuma rede social encontrada.</p>
+      <p>Nenhuma verba indenizatoria encontrada.</p>
     </div>
     <div class="p-6 flex justify-center items-center" v-else>
       <Chart type="pie" :data="chartData" :options="chartOptions" class="w-full md:w-96" />
