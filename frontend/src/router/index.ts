@@ -15,17 +15,17 @@ const router = createRouter({
     {
       path: "/deputados",
       name: "deputados",
-      component: () => Deputados,
+      component: Deputados,
     },
     {
       path: "/redes-sociais",
       name: "redes-sociais",
-      component: () => RedesSociais,
+      component: RedesSociais,
     },
     {
       path: "/verbas-indenizatorias/:mes",
       name: "verbas-indenizatorias",
-      component: () => VerbasIndenizatorias,
+      component: VerbasIndenizatorias,
     },
   ],
 })
