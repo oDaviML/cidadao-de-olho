@@ -1,7 +1,11 @@
 <script setup lang="ts">
+defineOptions({
+  name: "DeputadosList",
+})
+
 import { onMounted } from "vue"
-import { useDeputadoStore } from "../stores/deputados"
-import LoadingSpinner from "../components/LoadingSpinner.vue"
+import { useDeputadoStore } from "@/stores/deputados"
+import LoadingSpinner from "@/components/LoadingSpinner.vue"
 import DataTable from "primevue/datatable"
 import Column from "primevue/column"
 

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { useRedesSociaisStore } from "../stores/redes-sociais"
+import { useRedesSociaisStore } from "@/stores/redes-sociais"
 import { onMounted, computed } from "vue"
-import LoadingSpinner from "../components/LoadingSpinner.vue"
+import LoadingSpinner from "@/components/LoadingSpinner.vue"
 import Chart from "primevue/chart"
 
 const redesSociaisStore = useRedesSociaisStore()
