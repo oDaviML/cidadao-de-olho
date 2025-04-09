@@ -11,7 +11,7 @@ export const useRedesSociaisStore = defineStore("redes-sociais", () => {
     error.value = null
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/rede-social/ranking/top5")
+      const response = await fetch("http://127.0.0.1:8000/api/rede-social/ranking/")
       if (!response.ok) {
         throw new Error("Erro ao buscar dados")
       }
