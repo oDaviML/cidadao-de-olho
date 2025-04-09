@@ -87,7 +87,7 @@ const selecionarMes = (mes: Mes) => {
               <RouterLink
                 :to="
                   mesSelecionado
-                    ? `/verbas-indenizatorias?mes=${mesSelecionado.valor}`
+                    ? `/verbas-indenizatorias/${mesSelecionado.valor}`
                     : '/verbas-indenizatorias'
                 "
               >
