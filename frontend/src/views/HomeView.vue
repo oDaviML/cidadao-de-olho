@@ -108,9 +108,9 @@ const selecionarMes = (mes: Mes) => {
       <div class="w-full md:w-96">
         <RouterLink to="/redes-sociais" class="block h-full">
           <Card class="hover:scale-105 transition-transform duration-300 shadow-lg h-full">
-            <template #title>TOP 5 Redes sociais</template>
+            <template #title>TOP Redes sociais</template>
             <template #content>
-              <div class="min-h-24">Exibir as 5 redes sociais mais utilizadas pelos deputados</div>
+              <div class="min-h-24">Exibir as redes sociais mais utilizadas pelos deputados</div>
             </template>
           </Card>
         </RouterLink>
