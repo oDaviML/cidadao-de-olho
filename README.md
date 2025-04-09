@@ -51,6 +51,7 @@ O projeto tem como objetivo principal:
 
 #### **1. Clone o Repositório**
 ```bash
+git clone https://github.com/oDaviML/cidadao-de-olho.git
 cd cidadao-de-olho
 ```
 
