@@ -1,21 +1,31 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import { createRouter, createWebHistory } from "vue-router"
+import HomeView from "../views/HomeView.vue"
+import Deputados from "@/views/Deputados.vue"
+import RedesSociais from "@/views/RedesSociais.vue"
+import VerbasIndenizatorias from "@/views/VerbasIndenizatorias.vue"
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/',
-      name: 'home',
+      path: "/",
+      name: "home",
       component: HomeView,
     },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue'),
+      path: "/deputados",
+      name: "deputados",
+      component: Deputados,
+    },
+    {
+      path: "/redes-sociais",
+      name: "redes-sociais",
+      component: RedesSociais,
+    },
+    {
+      path: "/verbas-indenizatorias/:mes",
+      name: "verbas-indenizatorias",
+      component: VerbasIndenizatorias,
     },
   ],
 })
