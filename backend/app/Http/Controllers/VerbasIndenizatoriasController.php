@@ -9,18 +9,6 @@ use Illuminate\Support\Facades\DB;
 
 class VerbasIndenizatoriasController extends Controller
 {
-    public function topDeputadosVerbas()
-    {
-        $topDeputados = VerbasIndenizatorias::selectRaw('deputado_id, SUM(valor) as total')
-            ->with('deputado:id,nome')
-            ->where('ano', 2023)
-            ->groupBy('deputado_id')
-            ->orderByDesc('total')
-            ->limit(5)
-            ->get();
-
-        return response()->json($topDeputados);
-    }
     public function topDeputadosVerbasMes($mes)
     {
         if (!is_numeric($mes) || $mes < 1 || $mes > 12) {
